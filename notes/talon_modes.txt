@@ -1,0 +1,19 @@
+##contruct talon in slave mode
+slaveMotor.SetControlMode(CANSpeedController::kFollower); //set control mode to follower
+slaveMotor.Set(2); //follow master talon with ID 2
+
+##default mode of talon is to use limit switches only
+talonObject.ConfigLimitMode(CANSpeedController::kLimitMode_SwitchInputsOnly);  //use just limit switches (NO)
+//talonObject.ConfigLimitMode(CANSpeedController::kLimitMode_SoftPositionLimits);  //use limit switches (NO) and soft-limits
+
+##default limit switch mode is Normally Open (neutral when closed)
+talonObject.ConfigFwdLimitSwitchNormallyOpen(true); //fwd lim set to normally open
+talonObject.ConfigFwdLimitSwitchNormallyOpen(false); //fwd lim set to normally closed
+
+talonObject.ConfigRevdLimitSwitchNormallyOpen(true); //rev lim set to normally open
+talonObject.ConfigRevdLimitSwitchNormallyOpen(false); //rev lim set to normally closed
+
+##default mode of talon is set in flash, but can override in code
+talonObject.ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake); //set to brake during neutral
+//talonObject.ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast); //set to coast during neutral
+//talonObject.ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Jumper); //set to use flash, no override

@@ -68,3 +68,17 @@ bool Lift::isRevLimitReached() { // Check if the rev limit switch has been reach
 void Lift::OverrideLimits(bool force) { //Override the limit switches
   liftmotor1->OverrideLimitSwitchesEnable(!!force);
 }
+
+void Lift::runLiftUp(bool force = false) { //Run the lift up
+  OverrideLimits(force);
+  liftmotor1->Set(ControlMode::PercentOutput, LIFT_SPEED);
+}
+
+void Lift::runLiftDown(bool force = false) { //Run the lift down
+  OverrideLimits(force);
+  liftmotor1->Set(ControlMode::PercentOutput, LIFT_SPEED * -1.0);
+}
+
+void Lift::stopLift() {
+  liftmotor1->StopMotor();
+}

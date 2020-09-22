@@ -21,6 +21,9 @@ class Lift : public frc2::SubsystemBase {
   bool isFwdLimitReached();
   bool isRevLimitReached();
   void OverrideLimits(bool force);
+  void runLiftUp(bool force);
+  void runLiftDown(bool force);
+  void stopLift();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
